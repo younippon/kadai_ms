@@ -15,6 +15,16 @@
 		D93B6A681A51450E0001D1BA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D93B6A671A51450E0001D1BA /* Images.xcassets */; };
 		D93B6A6B1A51450E0001D1BA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D93B6A691A51450E0001D1BA /* LaunchScreen.xib */; };
 		D93B6A771A51450E0001D1BA /* MineSweeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93B6A761A51450E0001D1BA /* MineSweeperTests.swift */; };
+		D9BB72D51A6A3CD6009E573D /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = D9BB72CB1A6A3CD6009E573D /* 1.png */; };
+		D9BB72D61A6A3CD6009E573D /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = D9BB72CC1A6A3CD6009E573D /* 2.png */; };
+		D9BB72D71A6A3CD6009E573D /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = D9BB72CD1A6A3CD6009E573D /* 3.png */; };
+		D9BB72D81A6A3CD6009E573D /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = D9BB72CE1A6A3CD6009E573D /* 4.png */; };
+		D9BB72D91A6A3CD6009E573D /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = D9BB72CF1A6A3CD6009E573D /* 5.png */; };
+		D9BB72DA1A6A3CD6009E573D /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = D9BB72D01A6A3CD6009E573D /* 6.png */; };
+		D9BB72DB1A6A3CD6009E573D /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = D9BB72D11A6A3CD6009E573D /* 7.png */; };
+		D9BB72DC1A6A3CD6009E573D /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = D9BB72D21A6A3CD6009E573D /* 8.png */; };
+		D9BB72DD1A6A3CD6009E573D /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = D9BB72D31A6A3CD6009E573D /* flag.png */; };
+		D9BB72DE1A6A3CD6009E573D /* mine.png in Resources */ = {isa = PBXBuildFile; fileRef = D9BB72D41A6A3CD6009E573D /* mine.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +50,16 @@
 		D93B6A701A51450E0001D1BA /* MineSweeperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MineSweeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D93B6A751A51450E0001D1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D93B6A761A51450E0001D1BA /* MineSweeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineSweeperTests.swift; sourceTree = "<group>"; };
+		D9BB72CB1A6A3CD6009E573D /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		D9BB72CC1A6A3CD6009E573D /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		D9BB72CD1A6A3CD6009E573D /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		D9BB72CE1A6A3CD6009E573D /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		D9BB72CF1A6A3CD6009E573D /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		D9BB72D01A6A3CD6009E573D /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
+		D9BB72D11A6A3CD6009E573D /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
+		D9BB72D21A6A3CD6009E573D /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
+		D9BB72D31A6A3CD6009E573D /* flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag.png; sourceTree = "<group>"; };
+		D9BB72D41A6A3CD6009E573D /* mine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mine.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				D93B6A5C1A51450E0001D1BA /* AppDelegate.swift */,
+				D9BB72CA1A6A3CA6009E573D /* images */,
 				D93B6A5E1A51450E0001D1BA /* GameScene.sks */,
 				D93B6A601A51450E0001D1BA /* GameScene.swift */,
 				D93B6A621A51450E0001D1BA /* GameViewController.swift */,
@@ -116,6 +137,23 @@
 				D93B6A751A51450E0001D1BA /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D9BB72CA1A6A3CA6009E573D /* images */ = {
+			isa = PBXGroup;
+			children = (
+				D9BB72CB1A6A3CD6009E573D /* 1.png */,
+				D9BB72CC1A6A3CD6009E573D /* 2.png */,
+				D9BB72CD1A6A3CD6009E573D /* 3.png */,
+				D9BB72CE1A6A3CD6009E573D /* 4.png */,
+				D9BB72CF1A6A3CD6009E573D /* 5.png */,
+				D9BB72D01A6A3CD6009E573D /* 6.png */,
+				D9BB72D11A6A3CD6009E573D /* 7.png */,
+				D9BB72D21A6A3CD6009E573D /* 8.png */,
+				D9BB72D31A6A3CD6009E573D /* flag.png */,
+				D9BB72D41A6A3CD6009E573D /* mine.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,10 +236,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9BB72DC1A6A3CD6009E573D /* 8.png in Resources */,
+				D9BB72DB1A6A3CD6009E573D /* 7.png in Resources */,
+				D9BB72D61A6A3CD6009E573D /* 2.png in Resources */,
 				D93B6A6B1A51450E0001D1BA /* LaunchScreen.xib in Resources */,
+				D9BB72DE1A6A3CD6009E573D /* mine.png in Resources */,
 				D93B6A681A51450E0001D1BA /* Images.xcassets in Resources */,
 				D93B6A5F1A51450E0001D1BA /* GameScene.sks in Resources */,
+				D9BB72DA1A6A3CD6009E573D /* 6.png in Resources */,
+				D9BB72D81A6A3CD6009E573D /* 4.png in Resources */,
 				D93B6A661A51450E0001D1BA /* Main.storyboard in Resources */,
+				D9BB72D91A6A3CD6009E573D /* 5.png in Resources */,
+				D9BB72DD1A6A3CD6009E573D /* flag.png in Resources */,
+				D9BB72D71A6A3CD6009E573D /* 3.png in Resources */,
+				D9BB72D51A6A3CD6009E573D /* 1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +461,7 @@
 				D93B6A7C1A51450E0001D1BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D93B6A7D1A51450E0001D1BA /* Build configuration list for PBXNativeTarget "MineSweeperTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +470,7 @@
 				D93B6A7F1A51450E0001D1BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
