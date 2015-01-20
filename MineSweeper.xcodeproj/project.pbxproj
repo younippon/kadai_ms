@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D904881D1A6CCCD100ED8F2F /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = D904881C1A6CCCD100ED8F2F /* square.png */; };
+		D905E6A81A6D209600A93D8D /* protect.png in Resources */ = {isa = PBXBuildFile; fileRef = D905E6A71A6D209600A93D8D /* protect.png */; };
 		D93B6A5D1A51450E0001D1BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93B6A5C1A51450E0001D1BA /* AppDelegate.swift */; };
 		D93B6A5F1A51450E0001D1BA /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D93B6A5E1A51450E0001D1BA /* GameScene.sks */; };
 		D93B6A611A51450E0001D1BA /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93B6A601A51450E0001D1BA /* GameScene.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D904881C1A6CCCD100ED8F2F /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
+		D905E6A71A6D209600A93D8D /* protect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = protect.png; sourceTree = "<group>"; };
 		D93B6A571A51450E0001D1BA /* MineSweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MineSweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D93B6A5B1A51450E0001D1BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D93B6A5C1A51450E0001D1BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 				D9BB2B4D1A6B9BB1007C3CF9 /* 6.png */,
 				D9BB2B4E1A6B9BB1007C3CF9 /* 7.png */,
 				D9BB2B4F1A6B9BB1007C3CF9 /* 8.png */,
+				D904881C1A6CCCD100ED8F2F /* square.png */,
+				D905E6A71A6D209600A93D8D /* protect.png */,
 				D9BB2B501A6B9BB1007C3CF9 /* flag.png */,
 				D9BB2B511A6B9BB1007C3CF9 /* mine.png */,
 			);
@@ -253,7 +259,9 @@
 				D9BB2B5D1A6BB1EF007C3CF9 /* logo.png in Resources */,
 				D9BB2B5A1A6B9BB1007C3CF9 /* flag.png in Resources */,
 				D9BB2B541A6B9BB1007C3CF9 /* 3.png in Resources */,
+				D904881D1A6CCCD100ED8F2F /* square.png in Resources */,
 				D9BB2B521A6B9BB1007C3CF9 /* 1.png in Resources */,
+				D905E6A81A6D209600A93D8D /* protect.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

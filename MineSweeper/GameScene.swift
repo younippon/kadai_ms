@@ -14,32 +14,45 @@ class GameScene: SKScene {
         case GetReady, Game, GameOver, GameClear
     }
     
-    //colors
+    //color
     let bgColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
     let squareColorEven = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
-    let squareColorOdd = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+    let squareColorOdd = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
     let squareBorderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
     let mineBrendColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
     let flagBrendColor = UIColor(red: 0, green: 1, blue: 0, alpha: 1)
+    let textBgColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
     
     //numbers
-    let rows = 13
-    let cols = 8
-    let mineNum = 20
+    let rows = 9
+    let cols = 6
+    let mineNum = 10
     
     //sizes and margins
     //let fieldSize = 320.0
     var squareFrameSize:CGFloat = 320.0
+    let squareScaleRatio:CGFloat = 2.0
+    let squareImageScaleRatio:CGFloat = 2.0
+    
     let marginButtom:CGFloat = 0.0
     
     //parameter
     var phase = Phase.GetReady
     var score = 0
     var openCount = 0
-    //var timer : NSTimeInterval = 0
+    var beganSquareSet:Array<SKNode> = []
     
-    //square type set
+    //timer
+    let longPressSec = 0.7
+    var timer : NSTimeInterval = -1
+    var lastUpdateTime : NSTimeInterval = 0
+    
+    //gesture flag
+    var longPress:Bool = false
+    
+    //square set
     var squareTypeArray:Array<NSInteger> = []
+    var squareProtectArray:Array<Bool> = []
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -47,8 +60,19 @@ class GameScene: SKScene {
         getReady()
     }
     
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        
+        switch phase {
+        case .Game:
+            setBeganSquare(touches)
+        default:
+            println("touch began")
+        }
+        println("touch began")
+        
+    }
+    
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        /* Called when a touch begins */
         
         switch phase {
         case .GetReady:
@@ -62,12 +86,12 @@ class GameScene: SKScene {
         default:
             println("touch Ended")
         }
+        println("touch Ended")
         
     }
    
     func retry() {
         resetGame()
-        
         getReady()
     }
     
@@ -98,22 +122,46 @@ class GameScene: SKScene {
     }
     
     func setLogoimage() {
+        
+        let centerPoint = CGPoint(x: self.size.width / 2.0, y: self.size.height / 2.0)
+        
+        var textBg = SKSpriteNode(color: textBgColor, size: CGSizeMake(self.size.width, 120.0))
+        textBg.position = centerPoint
+        textBg.zPosition = 2.0
+        textBg.name = "logoBg"
+        addChild(textBg)
+        
         var titleLogo = SKSpriteNode(imageNamed: "logo.png")
         let logoSizeFixed = self.size.width / 1920.0
         titleLogo.xScale =  logoSizeFixed
         titleLogo.yScale =  logoSizeFixed
-        titleLogo.position = CGPoint(x: self.size.width / 2.0, y: self.size.height / 2.0)
-        //addChild(titleLogo)
+        titleLogo.position = centerPoint
+        titleLogo.zPosition = 3.0
+        titleLogo.name = "logo"
+        addChild(titleLogo)
+    }
+    
+    func deleteLogoimage() {
+        self.enumerateChildNodesWithName("logo") {
+            node, stop in
+            node.removeFromParent()
+        }
+        self.enumerateChildNodesWithName("logoBg") {
+            node, stop in
+            node.removeFromParent()
+        }
     }
     
     func start() {
-        
+        deleteLogoimage()
         phase = Phase.Game
+        
     }
     
     func addSquares(minePosition: Array<NSInteger>) {
         let squareSize = setSquareSize()
         squareTypeArray = []
+        squareProtectArray = []
         for i in 0...rows - 1 {
             for j in 0...cols - 1 {
                 
@@ -121,11 +169,12 @@ class GameScene: SKScene {
                 let squareType = setSquareType(minePosition, xPos:j, yPos:i)
                 squareTypeArray.append(squareType)
                 
+                squareProtectArray.append(false)
+                
                 var squareImage = setSquareImage(squareSize, type:squareType)
                 squareImage.position = setSquarePosition(squareImage, size:squareSize, xPos:j, yPos:i)
                 
                 var square = setSquare(squareSize, type:squareType, num:n)
-                square.name = NSString(format: "%d", n)
                 square.position = setSquarePosition(square, size:squareSize, xPos:j, yPos:i)
                 
             }
@@ -165,9 +214,8 @@ class GameScene: SKScene {
         
         var square = SKSpriteNode(imageNamed: imageName)
         
-        square.xScale = 2.0 / CGFloat(cols)
-        square.yScale = 2.0 / CGFloat(cols)
-        //square.name = NSString(format: "%d", type)
+        square.xScale = squareImageScaleRatio / CGFloat(cols)
+        square.yScale = squareImageScaleRatio / CGFloat(cols)
         square.color = mineBrendColor
         square.colorBlendFactor = CGFloat(type) / 10.0
         
@@ -180,8 +228,16 @@ class GameScene: SKScene {
     func setSquare (size:CGFloat, type: NSInteger, num:NSInteger) -> SKSpriteNode {
         
         var color = setSquareColor(num)
-        var square = SKSpriteNode(color: color, size: CGSizeMake(size, size))
+        var square = SKSpriteNode(imageNamed: "square.png")
+        
+        square.xScale = squareScaleRatio / CGFloat(cols)
+        square.yScale = squareScaleRatio / CGFloat(cols)
+        square.color = color
+        square.colorBlendFactor = 1.0
+        square.zPosition = 1.0
+        
         addChild(square)
+        square.name = NSString(format: "%d", num)
         return square
     }
     
@@ -239,28 +295,68 @@ class GameScene: SKScene {
     //game action
     
     override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
+        if(timer > longPressSec){
+            longPress = true
+            timer = -1.0
+            println("long press flag")
+        }else if(timer >= 0.0){
+            let timeSinceLast:CFTimeInterval = currentTime - lastUpdateTime
+            timer += timeSinceLast
+            println(timer)
+        }
+        lastUpdateTime = currentTime
     }
     
     func gameAction (touches: NSSet) {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self)
-            openSquare(location)
-        }
-    }
-    
-    func openSquare (location: CGPoint) {
-        let node:SKNode = nodeAtPoint(location)
-        if(node.name != nil){
-            let nodeName:String = node.name!
-            let type = squareTypeArray[nodeName.toInt()!]
-            openSquareAction(type, node:node)
+            openSquareAction(location)
             
-            gameClearChecker()
         }
     }
     
-    func openSquareAction (type:NSInteger, node:SKNode) {
+    func openSquareAction (location: CGPoint) {
+        var node:SKNode = nodeAtPoint(location)
+        if(node.name != nil){
+
+            let n = find(beganSquareSet, node)
+            if(n == nil){
+                longPress = false
+                return
+            }
+            let nodeName:String = node.name!
+            let nameInt = nodeName.toInt()!
+            let type = squareTypeArray[nameInt]
+            
+            timer = -1.0
+            if(longPress){
+                protectSquare(nameInt, node: node as SKSpriteNode)
+            }else if(!squareProtectArray[nameInt]){
+                timer = -1.0
+                openSquare(type, node: node)
+                beganSquareSet.removeAtIndex(n!)
+                println(node.name)
+                gameClearChecker()
+            }else{
+                println("protected")
+            }
+        }
+        longPress = false
+    }
+    
+    func protectSquare(n:NSInteger, node:SKSpriteNode) {
+        if(squareProtectArray[n]){
+            node.color = setSquareColor(n)
+            println("cancel")
+        }else{
+            node.color = flagBrendColor
+            println("protect")
+        }
+        squareProtectArray[n] = !squareProtectArray[n]
+    }
+    
+    func openSquare (type:NSInteger, node:SKNode) {
+        
         if(type == 9){
             node.removeFromParent()
             phase = Phase.GameOver
@@ -271,11 +367,14 @@ class GameScene: SKScene {
     }
 
     func openSafeSquare (type:NSInteger, node:SKNode) {
-        node.removeFromParent()
-        if(type == 0){
-            neighborChecker(node)
+        let num:NSInteger = node.name!.toInt()!
+        if(!squareProtectArray[num]){
+            node.removeFromParent()
+            if(type == 0){
+                neighborChecker(node)
+            }
+            openCount += 1
         }
-        openCount += 1
     }
     
     func neighborChecker(node:SKNode) {
@@ -284,7 +383,7 @@ class GameScene: SKScene {
         let num = nodeName.toInt()!
         let nodeX:NSInteger = num % cols
         let nodeY:NSInteger = num / cols
-        
+    
         for i in -1...1 {
             for j in -1...1 {
                 if(i != 0 || j != 0){
@@ -318,10 +417,29 @@ class GameScene: SKScene {
         }
     }
     
-    func gameClearChecker (){
+    func gameClearChecker () {
         if(openCount >= rows * cols - mineNum) {
             phase = Phase.GameClear
             println("clear")
         }
+    }
+    
+    func setBeganSquare(touches:NSSet) {
+        beganSquareSet = []
+        
+        for touch: AnyObject in touches {
+            let location = touch.locationInNode(self)
+            let node:SKNode = nodeAtPoint(location)
+            if(node.name != nil){
+                beganSquareSet.append(node)
+                println(node.name)
+                startTimer()
+            }
+            
+        }
+    }
+    
+    func startTimer() {
+        timer = 0.0
     }
 }
